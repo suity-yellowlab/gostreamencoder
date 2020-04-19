@@ -13,9 +13,9 @@ const (
 	datablock
 	endblock
 )
+const blockHeaderSize = 6
 
 type Encoder struct {
-	input  io.Reader
 	output io.Writer
 	block  block
 }
@@ -28,8 +28,6 @@ type StreamFile struct {
 	Size int64  `json:"Size"`
 }
 
-const blockHeaderSize = 6
-
 type block struct {
 	blocktype uint16
 	blocksize uint32
@@ -39,7 +37,7 @@ type ReadError struct {
 }
 
 func (re ReadError) Error() string {
-	return "todo"
+	return "Error Reading"
 }
 
 type BlockSizeOverflowError struct {
